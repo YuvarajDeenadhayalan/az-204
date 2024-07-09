@@ -1,0 +1,30 @@
+{
+    "volumes": [
+        {
+            "name": "myvolume1",
+            "azureFile": {
+                "shareName": "share1",
+                "storageAccountName": "myStorageAccount",
+                "storageAccountKey": "<storage-account-key>"
+            }
+        },
+        {
+            "name": "myvolume2",
+            "azureFile": {
+                "shareName": "share2",
+                "storageAccountName": "myStorageAccount",
+                "storageAccountKey": "<storage-account-key>"
+            }
+        }
+    ],
+    "volumeMounts": [
+        {
+            "name": "myvolume1",
+            "mountPath": "/mnt/share1/"
+        },
+        {
+            "name": "myvolume2",
+            "mountPath": "/mnt/share2/"
+        }
+    ]
+}
