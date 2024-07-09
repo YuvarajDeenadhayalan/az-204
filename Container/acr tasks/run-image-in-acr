@@ -1,0 +1,2 @@
+az acr run --registry <myContainerRegistry> \
+    --cmd '$Registry/sample/hello-world:v1' /dev/null

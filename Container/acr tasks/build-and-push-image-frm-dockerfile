@@ -1,0 +1,6 @@
+echo FROM mcr.microsoft.com/hello-world > Dockerfile
+
+az acr build --image sample/hello-world:v1  \
+    --registry <myContainerRegistry> \
+    --file Dockerfile .
+

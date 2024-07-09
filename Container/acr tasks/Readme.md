@@ -1,0 +1,1 @@
+Exercise: Build and run a container image by using Azure Container Registry Tasks

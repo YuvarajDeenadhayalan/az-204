@@ -1,0 +1,4 @@
+az acr repository list --name <myContainerRegistry> --output table
+
+az acr repository show-tags --name <myContainerRegistry> \
+    --repository sample/hello-world --output table
