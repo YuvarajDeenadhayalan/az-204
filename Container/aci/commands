@@ -1,0 +1,19 @@
+az group create --name az204-aci-rg --location <myLocation>
+
+# You create a container by providing a name, a Docker image, and an Azure resource group to the az container create command. You expose the container to the Internet by specifying a DNS name label.
+
+# Create a DNS name to expose your container to the Internet. Your DNS name must be unique, run this command from Cloud Shell to create a variable that holds a unique name.
+
+DNS_NAME_LABEL=aci-example-$RANDOM
+
+# $DNS_NAME_LABEL specifies your DNS name. The image name, mcr.microsoft.com/azuredocs/aci-helloworld, refers to a Docker image that runs a basic Node.js web application.
+az container create --resource-group az204-aci-rg --name mycontainer --image mcr.microsoft.com/azuredocs/aci-helloworld --ports 80 --dns-name-label $DNS_NAME_LABEL --location uksouth
+
+# Verify the container is running
+az container show --resource-group az204-aci-rg --name mycontainer --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table
+
+# From a browser, navigate to your container's FQDN to see it running. You may get a warning that the site isn't safe.
+
+# clean up
+
+az group delete --name az204-aci-rg --no-wait

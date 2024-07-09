@@ -1,0 +1,1 @@
+Deploy a container instance by using the Azure CLI
