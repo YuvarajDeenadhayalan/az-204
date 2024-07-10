@@ -34,4 +34,4 @@ az containerapp create \
 # Clean up resources
 az group delete --name $myRG
 
-# The code in aca-configuration.json code is an example of the containers array in the properties.template section of a container app resource template. The excerpt shows some of the available configuration options when setting up a container when using Azure Resource Manager (ARM) templates. Changes to the template ARM configuration section trigger a new container app revision.
+# The code in aca-configuration.json is an example of the containers array in the properties.template section of a container app resource template. The excerpt shows some of the available configuration options when setting up a container when using Azure Resource Manager (ARM) templates. Changes to the template ARM configuration section trigger a new container app revision.
