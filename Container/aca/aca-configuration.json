@@ -41,5 +41,10 @@
                 }
             ]
         }
-    ]
+    ],        
+    "registries": [{
+        "server": "docker.io",
+        "username": "my-registry-user-name",
+        "passwordSecretRef": "my-password-secret-name"
+    }]
 }
