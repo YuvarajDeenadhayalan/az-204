@@ -1,0 +1,19 @@
+{
+    "disabled": false,
+      "bindings": [
+          {
+              "type": "queueTrigger",
+              "direction": "in",
+              "name": "myQueueItem",
+              "queueName": "myqueue-items",
+              "connection":"MyStorageConnectionAppSetting"
+          },
+          {
+            "tableName": "Person",
+            "connection": "MyStorageConnectionAppSetting",
+            "name": "tableBinding",
+            "type": "table",
+            "direction": "out"
+          }
+    ]
+  }
