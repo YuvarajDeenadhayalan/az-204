@@ -50,3 +50,16 @@ dotnet run
 To clean up
 az group delete --name az204-blob-rg --no-wait
 
+# REST API
+# Retrieving metadata headers on a container
+GET/HEAD https://myaccount.blob.core.windows.net/mycontainer?restype=container
+
+# Retrieving metadata headers on a blob
+GET/HEAD https://myaccount.blob.core.windows.net/mycontainer/myblob?comp=metadata
+
+# Setting metadata headers on a container
+PUT https://myaccount.blob.core.windows.net/mycontainer?comp=metadata&restype=container
+
+# Setting metadata headers on a blob
+PUT https://myaccount.blob.core.windows.net/mycontainer/myblob?comp=metadata
+

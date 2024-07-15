@@ -87,6 +87,74 @@ static async Task ProcessAsync()
 
     Console.WriteLine("Finished cleaning up.");
 
+    //Retrieve container properties
+    ReadContainerPropertiesAsync(containerClient)
+
+    // Set Metadata
+    AddContainerMetadataAsync(containerClient);
+    //Retrieve metadata
+    ReadContainerMetadataAsync(containerClient);
+
     Console.WriteLine("Press 'Enter' to continue.");
     Console.ReadLine();
+}
+
+private static async Task ReadContainerPropertiesAsync(BlobContainerClient container)
+{
+    try
+    {
+        // Fetch some container properties and write out their values.
+        var properties = await container.GetPropertiesAsync();
+        Console.WriteLine($"Properties for container {container.Uri}");
+        Console.WriteLine($"Public access level: {properties.Value.PublicAccess}");
+        Console.WriteLine($"Last modified time in UTC: {properties.Value.LastModified}");
+    }
+    catch (RequestFailedException e)
+    {
+        Console.WriteLine($"HTTP error code {e.Status}: {e.ErrorCode}");
+        Console.WriteLine(e.Message);
+    }
+}
+
+public static async Task AddContainerMetadataAsync(BlobContainerClient container)
+{
+    try
+    {
+        IDictionary<string, string> metadata =
+           new Dictionary<string, string>();
+
+        // Add some metadata to the container.
+        metadata.Add("docType", "textDocuments");
+        metadata.Add("category", "guidance");
+
+        // Set the container's metadata.
+        await container.SetMetadataAsync(metadata);
+    }
+    catch (RequestFailedException e)
+    {
+        Console.WriteLine($"HTTP error code {e.Status}: {e.ErrorCode}");
+        Console.WriteLine(e.Message);
+    }
+}
+
+public static async Task ReadContainerMetadataAsync(BlobContainerClient container)
+{
+    try
+    {
+        var properties = await container.GetPropertiesAsync();
+
+        // Enumerate the container's metadata.
+        Console.WriteLine("Container metadata:");
+        foreach (var metadataItem in properties.Value.Metadata)
+        {
+            Console.WriteLine($"\tKey: {metadataItem.Key}");
+            Console.WriteLine($"\tValue: {metadataItem.Value}");
+        }
+    }
+    catch (RequestFailedException e)
+    {
+        Console.WriteLine($"HTTP error code {e.Status}: {e.ErrorCode}");
+        Console.WriteLine(e.Message);
+
+    }
 }
